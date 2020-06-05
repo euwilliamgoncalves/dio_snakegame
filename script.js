@@ -1,6 +1,6 @@
 let canvas = document.getElementById("snake")
 let context = canvas.getContext("2d")
-let box = 16
+let box = 8
 let snake = []
 
 snake[0] = {
@@ -12,7 +12,7 @@ let direction = "right"
 
 function criarBG() {
     context.fillStyle = "lightgreen"
-    context.fillRect(0, 0, 32 * box, 32 * box)
+    context.fillRect(0, 0, 50 * box, 50 * box)
 }
 
 function criarCobrinha() {
@@ -32,6 +32,10 @@ function update (event) {
 }
 
 function iniciarJogo() {
+    if(snake[0].x > 49 * box && direction == "right") snake[0].x = 0
+    if(snake[0].x < 0 * box && direction == "left") snake[0].x = 49 * box
+    if(snake[0].y > 49 * box && direction == "down") snake[0].y = 0
+    if(snake[0].y < 0 * box && direction == "up") snake[0].y = 49*box
     criarBG()
     criarCobrinha()
 
@@ -53,4 +57,4 @@ function iniciarJogo() {
     snake.unshift(newHead)
 }
 
-let jogo = setInterval(iniciarJogo, 100)
+let jogo = setInterval(iniciarJogo, 200)
